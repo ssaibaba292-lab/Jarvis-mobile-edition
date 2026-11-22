@@ -1,111 +1,53 @@
+
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>J.A.R.V.I.S Brain Test</title>
-
-<style>
-
-body {background:#000;color: #off; font-family: monospace; padding: 20px}
-
-hi{text-align:center;letter-spacing:4px}
-
-#status{color:#f00;text-align:center; margin-bottom: 15px; font-weight:bold}
-
-textarea{width: 100%; background: #001a1a;color:#8ff;border:1px solid #eff;padding:
-
-18px; box-sizing: border-box)
-
-button{width: 100%; padding: 14px; background:#0ff;color:#000; font-
-
-weight:bold; border: none; margin-top:10px;font-size:16px}
-
-#reply(border:1px solid #off;padding:12px;margin-top:15px;min-height:100px; white-
-
-space: pre-wrap;color:#fff}
-
-</style>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JARVIS AI</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
 </head>
-
 <body>
 
-<h1>J.A.R.V.I.S</h1>
+<header>
+  <h1>J.A.R.V.I.S</h1>
+  <p>PERSONAL AI ASSISTANT</p>
+</header>
 
-<div id="status">BRAIN: NOT CONNECTED</div>
+<div class="core">
+  <div class="ring r1"></div>
+  <div class="ring r2"></div>
+  <div class="center"></div>
+</div>
 
-<textarea id="prompt" rows="4">Hello J.A.R.V.I.S</textarea>
+<div class="core-text">SYSTEM INITIALIZING</div>
 
-<button onclick="ask()">SEND REQUEST</button>
+<div class="status">
+  <h2>SYSTEM STATUS</h2>
+  <div class="row">
+    <span>AI BRAIN</span>
+    <span id="brain" class="off">OFFLINE</span>
+  </div>
+  <div class="row">
+    <span>GEMINI API</span>
+    <span id="connection" class="off">DISCONNECTED</span>
+  </div>
+</div>
 
-<div id="reply">Waiting for response...</div>
+<div class="status">
+  <label for="apiKey">GEMINI API KEY</label>
+  <input id="apiKey" type="password" placeholder="Enter your API key">
+</div>
 
-<script>
+<div class="chat" id="chat">
+  <div class="msg ai">J.A.R.V.I.S: Hello Boss. Systems ready.</div>
+</div>
 
-// A PASTE YOUR API KEY BELOW (Inside the quotes)
-
-const API KEY = "PASTE_YOUR_API_KEY_HERE";
-
-async function ask(){
-
-document.getElementById("reply").innerText = "PROCESSING. document.getElementById("status").inner Text "CONNECTING...";
-
-try{
-
-const res await fetch(
-
-"https://generative language.googleapis.com/v1beta/models/gemini-1.5-flash-
-
-latest: generateContent?key=" + API KEY,
-
-{
-
-method: "POST",
-
-headers: ("Content-Type": "application/json"},
-
-body: JSON.stringify({
-
-contents: [{ parts: [{ text: document.getElementById("prompt").value}]]] })
-
-);
-
-}
-
-const data await res.json();
-
-if (data.candidates && data, candidates[0]){ document.getElementById("reply").innerText
-
-data.candidates[0].content.parts[0].text;
-
-document.getElementById("status").innerText = " BRAIN ONLINE";
-
-document.getElementById("status").style.color="#0f0";
-
-} else {
-
-document.getElementById("reply").innerText = "ERROR:
-
-JSON.stringify(data);
-
-}
-
-}catch(e){
-
-4/5
-
-document.getElementById("reply").innerText = "NETWORK ERROR: " + e.message; document.getElementById("status").inner Text "CONNECTION FAILED";
-
-}
-
-</script>
+<div class="input-area">
+  <input id="msg" type="text" placeholder="Talk to Jarvis...">
+  <button id="send">SEND</button>
+</div>
 
 </body>
-
 </html>
